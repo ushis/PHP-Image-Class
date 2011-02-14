@@ -7,5 +7,5 @@
 	$a->resize(200, 0);			// Scale image			width: 200px
 
 	$a->show();				// Show result
-//	$a->save('results/resized.jpg');	// And/Or save result		file  : results/resized.jpg
+//	$a->save('results/resized.jpg');	// Save result			file  : results/resized.jpg
 ?>

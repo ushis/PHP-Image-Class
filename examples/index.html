@@ -11,7 +11,7 @@
 		h3 {margin: 0; padding: 30px 100px 10px;}
 		pre {margin: 20px 100px; padding: 10px; border: 1px solid #333; line-height: 1.4em; overflow: auto;}
 		img {margin: 10px 100px;}
-		ul {margin: 10px 100px;}
+		ul {margin: 10px 100px; padding-bottom: 20px;}
 		ul li {margin: 0 0 20px 0;}
 		ul li span.args {font-size: .9em; color: #555;}
 		ul li span.descr {font-size: .8em; padding: 6px 0;}
@@ -59,7 +59,7 @@
 	$a->resize(200, 0);			// Scale image			width: 200px
 
 	$a->show();				// Show result
-//	$a->save('results/resized.jpg');	// And/Or save result		file  : results/resized.jpg
+//	$a->save('results/resized.jpg');	// Save result			file  : results/resized.jpg
 ?&gt;</pre>
 
 	<h3>Result</h3>
@@ -72,17 +72,16 @@
 	
 	<pre>
 &lt;?php
-	require_once('../image.php');		// Load image class
+	require_once('./image.php');		// Load image class
 
 	$b = new Image();			// Create new Image object b
-	
 	$b->createFromFile('img/b.png');	// Create image from file 	file : b.png
-	$b->resize(150, 0);			// Scale image			width: 150px
+	$b->resize(0, 150);			// Scale image			height: 150px
 
 	$a = new Image();			// Create new Image object a
 	$a->createFromFile('img/a.jpg');	// Create image from file 	file    : a.jpg
 	$a->merge($b, 'right', 30);		// Put image b on image a	position: right/30
-	$a->resize(0, 300);			// Scale image			height  : 300px
+	$a->resize(200, 0);			// Scale image			width   : 200px
 
 	$a->show();				// Show result
 ?&gt;</pre>
@@ -93,7 +92,7 @@
 
 <!-- More methods-->
 	
-	<h2>More Mehods</h2>
+	<h2>More Methods</h2>
 	
 	<ul>
 		<li>hex2rgb<span class="args">($hex)</span><br/>
@@ -126,6 +125,6 @@
 			<span class="descr">Save your image in a writable directory</span></li>
 	</ul>
 	
-	<p>More: <a href="https://github.com/ushis/PHP-Image-Class/">PHP-Image-Class@Github</a><a href="http://ushi.wurstcase.net">My Blog</a></p>
+	<p><a href="https://github.com/ushis/PHP-Image-Class/">PHP-Image-Class@Github</a><a href="http://ushi.wurstcase.net">ushi.wurstcase.net</a></p>
 </body>
 </html>

@@ -2,7 +2,6 @@
 	require_once('../image.php');		// Load image class
 
 	$b = new Image();			// Create new Image object b
-	
 	$b->createFromFile('img/b.png');	// Create image from file 	file : b.png
 	$b->resize(0, 150);			// Scale image			height: 150px
 
