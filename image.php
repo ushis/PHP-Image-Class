@@ -142,10 +142,11 @@ class Image {
 				$background = imagecolorallocate($this->image, $rgb['r'], $rgb['g'], $rgb['b']);
 				imagefill($this->image, 0, 0, $background);
 			} else {
-				$black = imagecolorallocate($this->image, 0, 0, 0);
-				imagecolortransparent($this->image, $black);
 				imagealphablending($this->image, false);
-				imagesavealpha($this->image, true);
+				$black = imagecolorallocate($this->image, 0, 0, 0);
+				imagefilledrectangle($this->image, 0, 0, $this->width, $this->height, $black);
+				imagecolortransparent($this->image, $black);
+				imagealphablending($this->image, true);
 			}
 
 			return true;
@@ -325,7 +326,7 @@ class Image {
 		}
 
 		imagealphablending($this->image, true);
-		imagecopy($this->image, $infos['resource'], $x, $y, 0, 0, $width, $height);
+		imagecopy($this->image, $infos['resource'], $x, $y, 0, 0, $infos['width'], $infos['height']);
 	}
 
 	/**

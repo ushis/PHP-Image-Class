@@ -1,0 +1,131 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>PHP Image Class</title>
+
+	<style>
+		body {margin: 0; padding: 0; font: normal normal normal 1em 'Helvetica', 'Arial', sans-serif;}
+		h1 {margin: 0; padding: 70px 100px 40px; font-size: 2.4em; font-weight: normal; background-color: #000; color: #d0d0d0;}
+		h2 {margin: 0; padding: 40px 100px 20px;}
+		h3 {margin: 0; padding: 30px 100px 10px;}
+		pre {margin: 20px 100px; padding: 10px; border: 1px solid #333; line-height: 1.4em; overflow: auto;}
+		img {margin: 10px 100px;}
+		ul {margin: 10px 100px;}
+		ul li {margin: 0 0 20px 0;}
+		ul li span.args {font-size: .9em; color: #555;}
+		ul li span.descr {font-size: .8em; padding: 6px 0;}
+		p {margin: 0; padding: 20px 100px 20px; font-size: .9em; background-color: #000; color: #d0d0d0;}
+		p a {color: #d0d0d0; margin: 0 10px;}
+		p a:hover {color: #f00;}
+	</style>
+</head>
+<body>
+	<h1>PHP Image Class</h1>
+	
+<!-- Create Image -->
+	
+	<h2>Create Image</h2>
+	
+	<pre>
+&lt;?php
+	require_once('../image.php');			// Load image class
+
+	$a = new Image();				// Create new Image object
+
+	$a->create(200, 100);				// Create transparent image 	expand  : 200/100
+	$a->ellipse(100, 0, 180, 100, '#acacac');	// Create ellipse 		position: 100/0	  | expand: 180/100 | color: #acacac
+	$a->rectangle(90, 0, 110, 100, '#acacac');	// Create rectangle 		x1/y1   : 100/100 | x2/y2 : 110/100 | color: #acacac
+	$a->ellipse(100, 100, 50, 50, '#acacac');	// Create ellipse 		position: 100/100 | expand: 50/50   | color: #acacac
+
+	$a->show();					// Show image
+?&gt;</pre>
+
+	<h3>Result</h3>
+
+	<img src="create.php" alt="Create"/>
+	
+<!-- Create Image From File -->
+	
+	<h2>Create Image From File</h2>
+	
+	<pre>
+&lt;?php
+	require_once('../image.php');		// Load image class
+
+	$a = new Image();			// Create new Image object
+
+	$a->createFromFile('img/a.jpg');	// Create image from file	file : a.jpg
+	$a->resize(200, 0);			// Scale image			width: 200px
+
+	$a->show();				// Show result
+//	$a->save('results/resized.jpg');	// And/Or save result		file  : results/resized.jpg
+?&gt;</pre>
+
+	<h3>Result</h3>
+
+	<img src="create_from_file.php" alt="Create from file"/>
+	
+<!-- Merge Images -->
+	
+	<h2>Merge Images</h2>
+	
+	<pre>
+&lt;?php
+	require_once('../image.php');		// Load image class
+
+	$b = new Image();			// Create new Image object b
+	
+	$b->createFromFile('img/b.png');	// Create image from file 	file : b.png
+	$b->resize(150, 0);			// Scale image			width: 150px
+
+	$a = new Image();			// Create new Image object a
+	$a->createFromFile('img/a.jpg');	// Create image from file 	file    : a.jpg
+	$a->merge($b, 'right', 30);		// Put image b on image a	position: right/30
+	$a->resize(0, 300);			// Scale image			height  : 300px
+
+	$a->show();				// Show result
+?&gt;</pre>
+
+	<h3>Result</h3>
+
+	<img src="merge.php" alt="Create from file"/>
+
+<!-- More methods-->
+	
+	<h2>More Mehods</h2>
+	
+	<ul>
+		<li>hex2rgb<span class="args">($hex)</span><br/>
+			<span class="descr">Get rgb color from hex code</span></li>
+		<li>createFromFile<span class="args">($path)</span><br/>
+			<span class="descr">Create your image from a file</span></li>
+		<li>create<span class="args">($width, $height, [ $background ])</span><br/>
+			<span class="descr">Create your image with background color or transparent</span></li>
+		<li>resize<span class="args">($width, $height)</span><br/>
+			<span class="descr">Resize your image, set one value 0 to scale</span></li>
+		<li>cutout<span class="args">($x, $y, $width, $height)</span><br/>
+			<span class="descr">Cut out a part of the image</span></li>
+		<li>rotate<span class="args">($angle)</span><br/>
+			<span class="descr">Rotate image, only available if your PHP is compiled with the bundled version of the GD library</span></li>
+		<li>rectangle<span class="args">($x1, $y1, $x2, $y2, $color)</span><br/>
+			<span class="descr">Draw a rectangle on your image</span></li>
+		<li>ellipse<span class="args">($x, $y, $width, $height, $color)</span><br/>
+			<span class="descr">Draw a ellipse on your image</span></li>
+		<li>polygon<span class="args">($points, $color)</span><br/>
+			<span class="descr">Draw a polygon on your image, $points is an array of coordinates, e.g. array($x1, $y1, $x2, $y2, $x3, $y3)</span></li>
+		<li>line<span class="args">($points, $color)</span><br/>
+			<span class="descr">Draw a line on your image, $points is an array of coordinates, e.g. array($x1, $y1, $x2, $y2)</span></li>
+		<li>write<span class="args">($x, $y, $font, $size, $angle, $color, $text)</span><br/>
+			<span class="descr">Write text on your image, $font is the path to a TrueType-file</span></li>
+		<li>merge<span class="args">($img, $x, $y)</span><br/>
+			<span class="descr">Put another image on your image, $img is a Image object</span></li>
+		<li>show<span class="args">([ $type ])</span><br/>
+			<span class="descr">Display your image, you can define the filetype, e.g. png</span></li>
+		<li>save<span class="args">($path)</span><br/>
+			<span class="descr">Save your image in a writable directory</span></li>
+	</ul>
+	
+	<p>More: <a href="https://github.com/ushis/PHP-Image-Class/">PHP-Image-Class@Github</a><a href="http://ushi.wurstcase.net">My Blog</a></p>
+</body>
+</html>
