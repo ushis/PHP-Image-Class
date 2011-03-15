@@ -183,7 +183,7 @@ class Image {
 	}
 
 	/**
-	 * Cuts a part of the image
+	 * Crops a part of the image
 	 *
 	 * @param integer $x X-coordinate
 	 * @param integer $y Y-coordinate
@@ -191,7 +191,7 @@ class Image {
 	 * @param integer $height Height of cutout
 	 * @acces public
 	 */
-	function cutout($x, $y, $width, $height) {
+	function crop($x, $y, $width, $height) {
 		$image = imagecreatetruecolor($width, $height);
 		imagealphablending($image, false);
 		imagesavealpha($image, true);
