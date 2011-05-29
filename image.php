@@ -1,6 +1,12 @@
 <?php
 /**
- * Class for handling images.
+ * Image
+ *
+ * Easy image handling using PHP 5  and the GDlib
+ *
+ * @copyright     Copyright 20010-2011, ushi <ushi@porkbox.net>
+ * @link          https://github.com/ushis/PHP-Image-Class
+ * @license       DBAD License (http://philsturgeon.co.uk/code/dbad-license)
  */
 class Image {
 
